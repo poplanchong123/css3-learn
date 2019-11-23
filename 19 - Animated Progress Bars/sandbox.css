@@ -1,0 +1,127 @@
+/* ========================================
+
+    CODE YOUR STYLES BELOW!
+
+   ====================================== */
+.animation-bar-1 {
+  position: relative;
+  display: block;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    0 1px rgba(255, 255, 255, 0.08);
+}
+
+.animation-bar-1 span {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  vertical-align: middle;
+  border-radius: 20px 0 0 20px;
+  background-image: linear-gradient(to bottom, #f2395a, #b90c2b);
+  animation: progress-anim-1 10s infinite linear;
+}
+.animation-bar-1 span::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: 100%;
+  background-image: linear-gradient(
+    45deg,
+    #ffffff 25%,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0) 50%,
+    #ffffff 50%,
+    #ffffff 75%,
+    rgba(0, 0, 0, 0) 75%,
+    rgba(0, 0, 0, 0)
+  );
+  background-size: 30px 30px;
+  opacity: 0.3;
+  animation: progress-anim-1-after 0.5s infinite linear;
+}
+
+@keyframes progress-anim-1 {
+  0% {
+    width: 20%;
+  }
+  50% {
+    width: 80%;
+  }
+  100% {
+    width: 20%;
+  }
+}
+@keyframes progress-anim-1-after {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 30px 100%;
+  }
+}
+
+.animation-bar-2 {
+  position: relative;
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    0 1px rgba(255, 255, 255, 0.08);
+}
+.animation-bar-2 span {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+  background-color: #00e6e7;
+  background-size: 100%;
+  background-image: linear-gradient(to bottom, #00b3b4, #008081);
+  animation: progress-bar-2 10s infinite linear;
+}
+
+.animation-bar-2 span::before {
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  bottom: 100%;
+  width: 0;
+  height: 0;
+  border: solid 10px transparent;
+  color: #ffffff;
+  content: '';
+  border-top-color: rgba(0, 0, 0, 1);
+  border-right-width: 0;
+  border-bottom-width: 0;
+}
+.animation-bar-2 span::after {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 5px);
+  content: attr(data-label);
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 5px;
+  font-size: 0.8em;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+@keyframes progress-bar-2 {
+  0% {
+    width: 20%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 20%;
+  }
+}

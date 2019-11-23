@@ -1,0 +1,61 @@
+/* ========================================
+
+    CODE YOUR STYLES BELOW!
+
+   ====================================== */
+.slide {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.slide img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.slide .slide-content {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: white;
+  background-color: rgba(225, 35, 69, 0.9);
+  -webkit-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+}
+
+.slide:hover .slide-content {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.slide-top .slide-content {
+  -webkit-transform: translate(0, -100%);
+  transform: translate(0, -100%);
+}
+
+.slide-right .slide-content {
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
+}
+
+.slide-bottom .slide-content {
+  -webkit-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+
+.slide-left .slide-content {
+  -webkit-transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
+}

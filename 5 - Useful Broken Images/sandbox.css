@@ -1,0 +1,32 @@
+/* ========================================
+
+    CODE YOUR STYLES BELOW!
+
+   ====================================== */
+
+.image {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 40px;
+}
+
+.image::after {
+  position: absolute;
+  display: inherit;
+  top: 0;
+  left: 0;
+  padding: 10px 20px 10px 45px;
+  width: 100%;
+  min-width: 200px;
+  background: url(noimage.png) no-repeat;
+  background-size: 10%;
+  background-position: 15px 10px;
+  content: '' attr(alt) ' Not Found';
+  background-color: #f0f0f0; /* 可能将原来的文字遮挡 */
+  color: #000000;
+  border: dashed 1px #000000;
+  z-index: 1;
+}

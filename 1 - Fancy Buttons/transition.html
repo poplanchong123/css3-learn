@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .div {
+        width: 100px;
+        height: 100px;
+        background: orange;
+      }
+      .div:hover {
+        border-radius: 0px;
+      }
+      #div {
+        border-radius: 100%;
+        transition: border-radius 3s ease;
+        -webkit-transition: -webkit-border-radius 3s ease;
+      }
+      #div:hover {
+        border-radius: 0px;
+      }
+      #div-linear {
+        border-radius: 100%;
+        transition: border-radius 3s linear;
+        -webkit-transition: -webkit-border-radius 3s linear;
+      }
+      #div-linear:hover {
+        border-radius: 0px;
+      }
+      #div-ease-in {
+        border-radius: 100%;
+        transition: border-radius 3s ease-in;
+        -webkit-transition: -webkit-border-radius 3s ease-in;
+      }
+      #div-ease-in:hover {
+        border-radius: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div" id="div"></div>
+    <div class="div" id="div-linear"></div>
+    <div class="div" id="div-ease-in"></div>
+  </body>
+</html>
