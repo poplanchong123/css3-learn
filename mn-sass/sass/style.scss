@@ -1,0 +1,214 @@
+// 定义变量
+$primary-color: #1269b5;
+$primary-border: 1px solid $primary-color;
+
+div.box {
+  background-color: $primary-color;
+}
+
+h1.page-header {
+  border: $primary-border;
+}
+
+// 嵌套样式
+.nav {
+  height: 100px;
+  ul {
+    margin: 0;
+    li {
+      float: left;
+      list-style: none;
+      padding: 5px;
+    }
+    a {
+      display: block;
+      color: #000;
+      padding: 5px;
+      // 不加空格，直接引用父选择器
+      &:hover {
+        background-color: #1269b5;
+        color: #ffffff;
+      }
+    }
+  }
+
+  & &-text {
+    font-size: 15px;
+  }
+}
+
+// 属性嵌套，解决前缀复用
+body {
+  font: {
+    family: Helvetica, Arial, sans-serif;
+    size: 15px;
+    weight: normal;
+  }
+}
+
+.nav2 {
+  border: 1px solid #000 {
+    left: 0;
+    right: 0;
+  }
+}
+
+// mixin
+@mixin alert($text-color, $background) {
+  color: $text-color;
+  background-color: $background;
+
+  a {
+    // darken函数 加深某一颜色
+    color: darken($text-color, 10%);
+  }
+}
+
+.alert-warning {
+  @include alert(#8a6d3b, #fcf8e3);
+}
+
+.alert-info {
+  @include alert($background: #5bb4e0, $text-color: #31708f);
+}
+
+// @extend 继承
+.alert {
+  padding: 15px;
+}
+
+.alert a {
+  font-weight: bold;
+}
+
+.alert-info2 {
+  @extend .alert;
+  background-color: #d9edf7;
+}
+
+// @import 导入其他scss（partials 一部分,文件命名需以_开头）
+@import 'base';
+
+// 注释
+/* 多行注释
+会包含在没有压缩之后的 CSS 里面
+快捷键：option+shift+A */
+
+// 单行注释不会出现在 CSS 里面
+
+/*! 强制输出的注释内容 */
+
+$base-color: hsl(221, 50%, 50%);
+$lighten-color: lighten($base-color, 20%);
+$darken-color: darken($base-color, 30%);
+
+.alert2 {
+  color: $base-color;
+  background-color: $lighten-color;
+  border: solid 1px $darken-color;
+}
+
+$saturate-color: saturate($base-color, 50%);
+$desaturate-color: desaturate($base-color, 30%);
+
+.alert3 {
+  color: $base-color;
+  background-color: $saturate-color;
+  border: solid 1px $desaturate-color;
+}
+
+$base-color2: hsl(0, 100%, 50%);
+$adjust-hue-color: adjust-hue($base-color2, 127deg);
+.alert4 {
+  color: $base-color2;
+  background-color: $adjust-hue-color;
+}
+
+$base-color3: hsla(222, 100%, 50%, 0.5);
+$fade-in-color: opacify($base-color3, 0.3);
+$fade-out-color: transparentize($base-color3, 0.2);
+
+.alert5 {
+  background-color: $fade-in-color;
+  border: 1px solid $fade-out-color;
+}
+
+$font-weights: (
+  'regular': 400,
+  'medium': 500,
+  'bold': 700
+);
+
+.alert6 {
+  color: map-get($font-weights, 'medium');
+}
+
+// interpolation 形式的插入
+
+$version: '0.0.1';
+
+/* 项目当前的版本是：#{$version} */
+
+$name: 'info';
+$attr: 'border';
+
+.alert6-#{$name} {
+  #{$attr}-color: red;
+}
+
+$theme: 'dark';
+
+.alert7 {
+  @if $theme == 'dark' {
+    background: black;
+  } @else if $theme == 'light' {
+    background: white;
+  } @else {
+    background: gray;
+  }
+}
+
+$columns: 4;
+@for $i from 1 through $columns {
+  .col-#{$i} {
+    width: 100% / $columns * $i;
+  }
+}
+
+@for $i from 1 to $columns {
+  .col2-#{$i} {
+    width: 100% / $columns * $i;
+  }
+}
+
+$icons: success error warning;
+
+@each $icon in $icons {
+  .icon-#{$icon} {
+    background-image: url(../images/icons/#{$icon}.png);
+  }
+}
+
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} {
+    width: 5px * $i;
+  }
+  $i: $i - 2;
+}
+
+$colors2: (
+  light: #ffffff,
+  dark: #000000
+);
+
+@function color($key) {
+  @if not map-has-key($colors2, $key) {
+    @warn "在 $colors2 里没找到 #{$key} 这个 key";
+  }
+  @return map-get($colors2, $key);
+}
+
+.alert8 {
+  color: color(light);
+}
