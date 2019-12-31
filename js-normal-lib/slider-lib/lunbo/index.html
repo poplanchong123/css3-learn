@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style type="text/css" media="screen">
+      *{
+        margin: 0;
+        padding: 0
+      }
+      a{
+        text-decoration: none;
+      }
+      li,ul li{
+        list-style: none;
+      }
+      .banner{
+        height: 210px;
+        position: relative;
+        overflow: hidden;
+      }
+      .banner-inner {
+        width: 100%;
+        height: 210px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .banner img{
+        max-width: 100%;
+        height: 210px;
+        display: block;
+        float: left;
+      }
+      .banner a:hover{
+        background: rgba(255,255,255,0.5)
+      }
+      .banner ul{
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+      }
+      .banner li{ display: inline-block; width: 10px; height: 10px; overflow: hidden; margin: 0 5px; background-color: rgba(255,255,255,.5); border-radius: 50%; z-index: 1111; cursor: pointer;}
+      .banner .active{
+        background: rgba(255,255,255,1)
+      }
+    </style>
+   
+  </head>
+  <body>
+    <h3>*** 问题：依赖于jquery，pc端有问题，移动端图片间右侧有细微边距</h3>
+    <div class="banner">
+      <div class="banner-inner">
+        <img src="../../assets/images/a1.png" alt="" name="2" />
+        <img src="../../assets/images/a2.png" alt="" name="3" />
+        <img src="../../assets/images/a3.png" alt="" name="0" />
+        <img src="../../assets/images/a4.png" alt="" name="1" />
+      </div>
+
+      <div class="ctrlbtn">
+        <a href="javascript:;" class="prev">&gt;</a>
+        <a href="javascript:;" class="next">&lt;</a>
+      </div>
+      <ul class="pageCtrl">
+        <li class=""></li>
+        <li class=""></li>
+        <li class="active"></li>
+        <li></li>
+      </ul>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"
+    ></script>
+
+    <script type="text/javascript" src="./lunbo.js"></script>
+    <script type="text/javascript">
+      $('.banner').changePic({
+        figureBtnAct: 'active',
+        clickNode: $('.pageCtrl li'),
+        loopNode: $('.banner-inner'),
+        loopCircle: '-800px',
+        sameNode: $('img'),
+        attrData: 'name',
+        leftBtn: $('.prev'),
+        rightBtn: $('.next')
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>图片懒加载</title>
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0-beta1/plugins/unveilhooks/ls.unveilhooks.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0-beta1/lazysizes.min.js"></script>
+    <style>
+      .no-src.lazyload,
+      .no-src.lazyloading {
+        opacity: 0;
+      }
+
+      .no-src.lazyloaded {
+        opacity: 1;
+        transition: opacity 300ms;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="list">
+      <img alt="Desert Road" data-src="../assets/images/1.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/2.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/3.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/4.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/5.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/6.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/7.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/8.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/9.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/10.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/11.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/12.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/13.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/14.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/15.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/16.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/17.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/18.jpg" class="lazyload no-src" />
+      <img alt="Desert Road" data-src="../assets/images/19.jpg" class="lazyload no-src" />
+      
+    </div>
+  </body>
+</html>

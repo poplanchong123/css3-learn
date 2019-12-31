@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- https://github.com/xiaoyann/iakit -->
+    <!-- alert, toast, loading, actionSheet  -->
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/iakit@2.2.0/dist/style.css"
+    />
+  </head>
+  <body>
+    <button onclick="alert(1111);">11111</button>
+    <script src="https://unpkg.com/iakit@2.2.0/dist/index.js"></script>
+
+    <script>
+      // iakit.alert('提示', '测试测试测试测试')
+      iakit.loading.show()
+      // iakit.actionsheet({
+      //   options: [
+      //     {
+      //       text: '我再想想',
+      //       disable: false,
+      //       onClick: (i, text) => {}
+      //     },
+      //     {
+      //       text: '去它的(disabled)',
+      //       disable: true
+      //     },
+      //     {
+      //       text: '就这样吧',
+      //       onClick: (i, text) => {}
+      //     }
+      //   ],
+      //   destructiveIndex: 2,
+      //   title: '确认要分手吗？',
+      //   onClick(i, text) {
+      //     // 点击了没有指定 onClick 函数的选项时，执行这个函数
+      //   },
+      //   onCancel() {
+      //     // 取消了
+      //   }
+      // })
+      iakit.toast.showTop('测试测试测试')
+      iakit.toast.showBottom('测试测试测试')
+    </script>
+  </body>
+</html>

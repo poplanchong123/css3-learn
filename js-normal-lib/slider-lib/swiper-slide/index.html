@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>轮播图</title>
+    <!-- https://github.com/nolimits4web/Swiper/ -->
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+    <style>
+      body{
+        margin: 0;
+      }
+      .swiper-container {
+        width: 100%;
+        height: 200px;
+      }
+      img{
+        max-width: 100%;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <h3>*** 描述：js:139K左右，是多数项目中使用的轮播库，不依赖于jquery，功能较全</h3>
+    <p>建议：项目未使用jquery，则选用该库真的不错</p>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="../../assets/images/a1.png" alt=""></div>
+        <div class="swiper-slide"><img src="../../assets/images/a2.png" alt=""></div>
+        <div class="swiper-slide"><img src="../../assets/images/a3.png" alt=""></div>
+        <div class="swiper-slide"><img src="../../assets/images/a4.png" alt=""></div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+
+      <!-- 如果需要导航按钮 -->
+      <!-- <div class="swiper-button-prev"></div> -->
+      <!-- <div class="swiper-button-next"></div> -->
+
+      <!-- 如果需要滚动条 -->
+      <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script>
+      var mySwiper = new Swiper('.swiper-container', {
+        // direction: 'vertical', // 垂直切换选项
+        loop: true, // 循环模式选项
+
+        // 如果需要分页器
+        pagination: {
+          el: '.swiper-pagination'
+        },
+
+        // 如果需要前进后退按钮
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev'
+        // },
+
+        // 如果需要滚动条
+        // scrollbar: {
+        //   el: '.swiper-scrollbar'
+        // }
+      })
+    </script>
+  </body>
+</html>

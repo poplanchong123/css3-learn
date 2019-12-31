@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- https://github.com/fengyuanchen/compressorjs -->
+    
+    <script src="./compressor.min.js"></script>
+  </head>
+  <body>
+    <h3>*** 问题：压缩只有改变尺寸文件大小才变小，不能通过改变质量来缩小图片大小，压缩率低，好奇怎么github有这么多start，难道就是有可视化的demo？</h3>
+
+    <input type="file" id="file" accept="image/*" />
+    <img id="img" src="" alt="">
+    <script>
+      window.onload = function() {
+        document.getElementById('file').addEventListener('change', e => {
+          const file = e.target.files[0]
+
+          if (!file) {
+            return
+          }
+
+          new Compressor(file, {
+            maxWidth: 1600,
+            quality: .65,
+            success(result) {
+              console.log(result);
+              
+              const formData = new FormData()
+
+              // The third parameter is required for server
+              formData.append('file', result, result.name)
+
+            },
+            error(err) {
+              console.log(err.message)
+            }
+          })
+        })
+      }
+    </script>
+  </body>
+</html>

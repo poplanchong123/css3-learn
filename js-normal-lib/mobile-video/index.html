@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script language="javascript" src="https://qzs.qq.com/tencentvideo_v1/js/tvp/tvp.player.js" charset="utf-8"></script>
+<style>
+  body{
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div style="margin-top: 8px; overflow: hidden;">
+		<div id="video-show1">
+			<video x5-video-player-type="h5" playsinline="true" id="video-show" style="width: 100%;height:100%;" controls autobuffer preload="metadata" x-webkit-airplay poster="" systemFullscreen="true">
+				<source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+			</video>
+		</div>
+		<script language="javascript">
+                var pwidth = $(document).width();
+                if(pwidth >= 1024){
+                    $("#video-show1").height(parseInt($(document).width()/2.13));
+                }else if(pwidth >= 720){
+                    $("#video-show1").height(parseInt($(document).width()/1.60));
+                }else if(pwidth <= 480){
+                    $("#video-show1").height(parseInt($(document).width()/1.33));
+                }
+		</script>
+	</div>
+</body>
+</html>

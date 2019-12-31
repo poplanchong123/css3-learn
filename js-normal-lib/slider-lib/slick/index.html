@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>轮播图</title>
+  <!-- https://github.com/kenwheeler/slick/ -->
+  
+  <!-- Add the slick-theme.css if you want default styling -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <!-- Add the slick-theme.css if you want default styling -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <style>
+    body{
+      margin: 0;
+    }
+    .slide img{
+      max-width: 100%;
+    }
+    .slick-dots{
+      bottom: 10px;
+    }
+    .slick-dots li.slick-active button:before
+    {
+        /* opacity: 0.5; */
+        color: pink;
+    }
+  </style>
+</head>
+<body>
+  <h3>*** 描述：js:48K+jquery:90K=140K左右，依赖jquery库，还不错，底部圆点位置和颜色，需要手动修改</h3>
+  <p>建议：如果已经引入了jquery，使用该库当然是个不错的选择</p>
+    <div class="slide">
+        <div><img src="../../assets/images/a1.png" alt=""></div>
+        <div><img src="../../assets/images/a2.png" alt=""></div>
+        <div><img src="../../assets/images/a3.png" alt=""></div>
+        <div><img src="../../assets/images/a4.png" alt=""></div>
+    </div>
+
+    <div class="slide2">
+      <div><h3>1</h3></div>
+      <div><h3>2</h3></div>
+      <div><h3>3</h3></div>
+      <div><h3>4</h3></div>
+      <div><h3>5</h3></div>
+      <div><h3>6</h3></div>
+    </div>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('.slide').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true
+      });
+      $('.slide2').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true
+      });
+    });
+  </script>
+</body>
+</html>

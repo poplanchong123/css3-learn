@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- https://github.com/WangYuLue/image-conversion -->
+    <!-- https://blog.csdn.net/qq_24147051/article/details/88087665 -->
+
+    <style>
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>*** 问题1：需要将blob转换成base64，此时要考虑到兼容，因为转换函数使用Promise，有些手机并不支持</h3>
+    <h3>*** 问题2：需要同时使用质量和尺寸时，需要手动计算相应比例，传入</h3>
+    <div>
+      <input id="demo" type="file" onchange="view()" />
+    </div>
+    <div>
+      <img src="" id="preview" alt="" />
+      <p id="output"></p>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/WangYuLue/image-conversion/build/conversion.js"></script> -->
+    <script src="./conversion.js"></script>
+    <script>
+      'use strict'
+
+      const preview = document.getElementById('preview')
+      const output = document.getElementById('output')
+
+      function view() {
+        const file = document.getElementById('demo').files[0]
+        console.log(file)
+        imageConversion
+          .compress(file, {
+            quality: 0.75,
+            width: 1920,
+            height: 1200
+          })
+          .then(res => {
+            console.log(res)
+
+            blobToBase64(res).then(res => {
+              // 转化后的base64
+              console.log('base64', res)
+
+              preview.src = res
+
+            })
+            // 浏览器允许使用URL.createObjectURL()方法，针对 Blob 对象生成一个临时 URL。
+            // 这个 URL 以blob://开头,表明对应一个 Blob 对象。
+            // preview.src = window.URL.createObjectURL(res)
+          })
+      }
+
+      function blobToBase64(blob) {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader()
+          fileReader.onload = e => {
+            resolve(e.target.result)
+          }
+          // readAsDataURL
+          fileReader.readAsDataURL(blob)
+          fileReader.onerror = () => {
+            reject(new Error('文件流异常'))
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
