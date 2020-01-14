@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/iosselect@1.1.5/src/iosSelect.css"
+    />
+    <script src="https://unpkg.com/jquery@1.12.4/dist/jquery.js"></script>
+    <script src="https://unpkg.com/iosselect@1.1.5/src/iosSelect.js"></script>
+    <script src="./pickertime.js"></script>
+  </head>
+  <body>
+    <div class="form-item item-line" id="selectDate">
+      <label>时间选择器</label>
+      <div class="pc-box">
+        <!-- <span data-year="" data-month="" data-date="" id="showDate"
+          >点击这里选择时间</span
+        > -->
+        <input type="text" id="showDate" />
+      </div>
+    </div>
+    <script type="text/javascript">
+      var selectDateDom = $("#selectDate");
+      var showDateDom = $("#showDate");
+      selectDateDom.bind("click", function() {
+        pickerTime({
+          dateTime: showDateDom.val(),
+          callback: value => {
+            console.log(value);
+            showDateDom.val(value.dateTime);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
