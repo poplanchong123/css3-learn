@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@15.1.1/dist/lazyload.min.js"></script>
+  </head>
+  <body>
+    <!-- <video class="lazy" controls width="620" data-src="http://demo.mywe7.com.cn/AllTaPxMP0jxjjXMlJx1j0OYEpLTEL.mp4" data-poster="http://demo.mywe7.com.cn/attachment//images/1/pop_vote/2020/04/j6245UhHrN4kY55H2MNaHtNaMJkNgA.png"> -->
+    <!-- <video class="lazy" controls width="620" data-src="http://jiu.image.poplanchong.top/AllTaPxMP0jxjjXMlJx1j0OYEpLTEL.mp4" data-poster="http://demo.mywe7.com.cn/attachment//images/1/pop_vote/2020/04/j6245UhHrN4kY55H2MNaHtNaMJkNgA.png"> -->
+
+    <video x5-video-player-type="h5" playsinline="true" id="video-show" style="width: 100%;height:100%;" controls autobuffer preload="metadata" x-webkit-airplay 
+    class="lazy" data-src="http://demo.mywe7.com.cn/AllTaPxMP0jxjjXMlJx1j0OYEpLTEL.mp4" 
+    data-poster="http://demo.mywe7.com.cn/attachment//images/1/pop_vote/2020/04/j6245UhHrN4kY55H2MNaHtNaMJkNgA.png" systemFullscreen="true">
+        <source data-src="http://demo.mywe7.com.cn/AllTaPxMP0jxjjXMlJx1j0OYEpLTEL.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+    </video>
+
+    <!-- <video x5-video-player-type="h5" playsinline="true" id="video-show" style="width: 100%;height:100%;" controls autobuffer preload="metadata" x-webkit-airplay poster="http://demo.mywe7.com.cn/attachment//images/1/pop_vote/2020/04/j6245UhHrN4kY55H2MNaHtNaMJkNgA.png" systemFullscreen="true">
+        <source src="http://demo.mywe7.com.cn/AllTaPxMP0jxjjXMlJx1j0OYEpLTEL.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+    </video> -->
+
+    <script>
+      var lazyLoadInstance = new LazyLoad({
+        elements_selector: ".lazy",
+      });
+    </script>
+  </body>
+</html>

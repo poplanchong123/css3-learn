@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* var url =
+        '<img height="100" src="data:image/png;base64,testurlhere" width="200" data-custom="size=111">';
+      var tmp = document.createElement("div");
+      tmp.innerHTML = url;
+      var src = tmp.querySelector("img").getAttribute("src");
+      var custom = tmp.querySelector("img").getAttribute("data-custom");
+      console.log("src", src);
+      console.log("custom", custom); */
+
+      let content =
+        '<p wx:nodeid="75">sfwew<img data-local="www" src="http://tmp/wxdaa2fdea1f7d1138.o6zAJs6E7PyqtgXEvCXKAIhLv1K8.aF1h1eVK8Ad17e7b6ec21e83e1177256da2897b23e8f.bmp" width="100%" wx:nodeid="78"><img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=300864" src="ddswew"><img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=3008614" src="ddswew1111"><img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=3008614" src="ddswew222"><img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=3008614" src="ddswew333"><img data-custom="size=2273178;test=sf" data-local="www" src="http://tmp/wxdaa2fdea1f7d1138.o6zAJs6E7PyqtgXEvCXKAIhLv1K8.aF1h1eVK8Ad17e7b6ec21e83e1177256da2897b23e8f.bmp" width="100%" wx:nodeid="78"></p><p wx:nodeid="82"><br wx:nodeid="83"></p>'; //6 5个符合
+
+  
+      let html =
+        '<p wx:nodeid="75">sfwew<img src="http://tmp/wxdaa2fdea1f7d1138.o6zAJs6E7PyqtgXEvCXKAIhLv1K8.aF1h1eVK8Ad17e7b6ec21e83e1177256da2897b23e8f.bmp" width="100%" data-custom="size=2273178" wx:nodeid="78"><img data-custom="size=2273178;test=sf" src="http://tmp/wxdaa2fdea1f7d1138.o6zAJs6E7PyqtgXEvCXKAIhLv1K8.aF1h1eVK8Ad17e7b6ec21e83e1177256da2897b23e8f.bmp" width="100%" wx:nodeid="78"></p><p wx:nodeid="82"><br wx:nodeid="83"></p>';
+
+      // let reg = /<img [^>]*src="[^"]*"[^>]*>/gm;
+      let reg = /<img [^>]*data-custom="[^"]*"[^>]*>/gm;
+      const regLocal = /<img [^>]*data-local="[^"]*"[^>]*>/;
+
+      let str = '<img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=300864" src="ddswew">';
+      console.log(regLocal.test(str));
+      let str1 = '<img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=3008614" src="ddswew1111">';
+      console.log(regLocal.test(str1));
+
+      // console.log(regLocal.test('<img data-local="wxfile://tmp_5286c5363ada7150ce3e3c13996c9eaa.jpg" width="100%" data-custom="size=300864" src="ddswew">'));
+
+      const sources = content.match(reg).map((img) => {
+        let x = img;
+        // console.log("x", x);
+        // console.log("local", regLocal);
+        // let t = regLocal.test(x);
+        // console.log("t", t);
+        // console.log('test', x.replace(/.*data-local="([^"]*)".*/, "$1"));
+        // console.log('test',true? x.replace(/.*data-local="([^"]*)".*/, "$1") : x.replace(/.*src="([^"]*)".*/, "$1"));
+        // console.log('test2',t? (x.replace(/.*data-local="([^"]*)".*/, "$1")) : (x.replace(/.*src="([^"]*)".*/, "$1")));
+        // console.log('xx',x);
+        // return {
+        //   path: regLocal.test(x)
+        //     ? x.replace(/.*data-local="([^"]*)".*/, "$1")
+        //     : x.replace(/.*src="([^"]*)".*/, "$1"),
+        //   size: x.replace(/.*data-custom="size=(\d*)".*/, "$1"),
+        // };
+      });
+
+      // console.log(sources);
+
+      //   let i = 0;
+      //   content = content.replace(reg, (x) => {
+      //     return x
+      //       .replace(/(.*src=")([^"]*)(".*)/gi, (v, ...args) => {
+      //         args[1] = "";
+      //         i++;
+      //         return args.splice(0, 3).join("");
+      //       })
+      //       .replace(/(.*)(data-custom="[^"]*")(.*)/, (v, ...args) => {
+      //         args[1] = "";
+      //         console.log(i);
+      //         return args.splice(0, 3).join("");
+      //       });
+      //   });
+
+      function getImageList(content) {
+        return content.match(reg);
+      }
+      function getImageTempFiles(arr) {
+        return arr.map((img) => {
+          return {
+            path: img.replace(/.*src="([^"]*)".*/, "$1"),
+            size: img.replace(/.*data-custom="size=(\d*)".*/, "$1"),
+          };
+        });
+      }
+      function replaceImageSrc(content, newArr) {
+        let i = 0;
+        return content.replace(reg, (x) => {
+          return x
+            .replace(/(.*src=")([^"]*)(".*)/gi, (v, ...args) => {
+              args[1] = newArr[i];
+              i++;
+              return args.splice(0, 3).join("");
+            })
+            .replace(/(.*)(data-custom="[^"]*")(.*)/, (v, ...args) => {
+              args[1] = "";
+              console.log(i);
+              return args.splice(0, 3).join("");
+            });
+        });
+      }
+
+      const imageList = getImageList(html);
+      let res = {
+        tempFiles: getImageTempFiles(imageList),
+      };
+
+      const filePaths = ["http://1.jpg", "http://2.jpg"];
+      const newHtml = replaceImageSrc(html, filePaths);
+    </script>
+  </body>
+</html>

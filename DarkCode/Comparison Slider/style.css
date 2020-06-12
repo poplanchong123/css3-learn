@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.slider {
+  width: 100%;
+  height: 100vh;
+  background-image: url(./2.jpg);
+  background-position: 0 center;
+  background-size: 100vw;
+  display: flex;
+  position: relative;
+}
+.slider input {
+  -webkit-appearance: none;
+  width: 100%;
+  background: none;
+  z-index: 10;
+  outline-style: none;
+}
+.slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 100vh;
+  background-color: #111;
+  cursor: pointer;
+}
+.original-image {
+  position: absolute;
+  width: 20%;
+  height: 100vh;
+  background-image: url(./1.jpg);
+  background-position: 0 center;
+  background-size: 100vw;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- https://github.com/alextanhongpin/compress.js -->
+
+    <title>Document</title>
+    <style>
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      ***
+      描述：信息完成，压缩非常好，但是需要用到wasm，需要进行配置，而且整体的js文件比较大
+    </h3>
+    <div>
+      <input type="file" id="upload" accept="image/*" />
+    </div>
+    <div>
+      <img src="" id="preview" alt="" />
+      <p id="output"></p>
+    </div>
+    <script src="./mozjpeg_enc.js"></script>
+    <script>
+      "use strict";
+
+      const module = mozjpeg_enc();
+      console.log(module);
+
+      async function loadImage(src) {
+        // Load image
+        const img = document.createElement("img");
+        img.src = src;
+        await new Promise((resolve) => (img.onload = resolve));
+        // Make canvas same size as image
+        // [canvas.width, canvas.height] = [img.width, img.height];
+
+        const canvas = document.createElement("canvas");
+        var originWidth, originHeight;
+        originWidth = img.width;
+        originHeight = img.height;
+        console.log("width:" + originWidth, "height:" + originHeight);
+
+        //压缩比例
+        // 最大尺寸限制
+        var maxWidth = 1080,
+          maxHeight = 1920;
+        // 目标尺寸
+        var targetWidth = originWidth,
+          targetHeight = originHeight;
+        //等比例压缩，如果宽度大于高度，则宽度优先，否则高度优先
+        if (originWidth > maxWidth || originHeight > maxHeight) {
+          if (originWidth / originHeight > maxWidth / maxHeight) {
+            // 要求宽度*(原生图片比例)=新图片尺寸
+            targetWidth = maxWidth;
+            targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+          } else {
+            targetHeight = maxHeight;
+            targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+          }
+        }
+
+        [canvas.width, canvas.height] = [targetWidth, targetHeight];
+        // Draw image onto canvas
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        return ctx.getImageData(0, 0, img.width, img.height);
+      }
+
+      async function compress(file) {
+        const image = await loadImage(file);
+        const result = module.encode(image.data, image.width, image.height, {
+          quality: 85,
+          baseline: false,
+          arithmetic: false,
+          progressive: true,
+          optimize_coding: true,
+          smoothing: 0,
+          color_space: 3,
+          quant_table: 3,
+          trellis_multipass: false,
+          trellis_opt_zero: false,
+          trellis_opt_table: false,
+          trellis_loops: 1,
+          auto_subsample: true,
+          chroma_subsample: 2,
+          separate_chroma_quality: false,
+          chroma_quality: 85,
+        });
+
+        const blob = new Blob([result], { type: "image/jpeg" });
+        const blobURL = URL.createObjectURL(blob);
+        const img = document.createElement("img");
+        img.src = blobURL;
+        document.body.appendChild(img);
+      }
+
+      upload.addEventListener(
+        "change",
+        (evt) => {
+          const files = [...evt.target.files];
+          console.log(files);
+
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            compress(e.target.result);
+          };
+          reader.readAsDataURL(files[0]);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
